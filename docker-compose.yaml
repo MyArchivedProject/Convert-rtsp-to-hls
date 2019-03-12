@@ -1,0 +1,14 @@
+version: "3"
+services:
+    convert:
+        restart: on-failure:10
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        image: convert/rtsp
+        container_name: ConvertRtsp
+        ports:
+            - "8999:80"
+        # share code to enable autorestart when there's code change
+        volumes:
+            - .:/space
